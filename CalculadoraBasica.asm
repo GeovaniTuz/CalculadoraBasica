@@ -4,7 +4,7 @@
 ;     Maestro:    Jose leonel Pech May
 
 ;     Nombre:     Geovani Alberto Tuz Poot
-;                 Lauro Garcia
+;                 Lauro Manuel Garcia Arzapalo
 
 
 ;     Actividad:  Calculadora
@@ -13,9 +13,9 @@ include 'emu8086.inc'
 
 ;------------------------------
 
-mimacro macro midato;estructura del macro
+mimacro macro dato;estructura del macro
         mov ah,02h
-        mov dl,midato  ;entrada del dato y mover
+        mov dl,dato  ;entrada del dato y mover
     
         add dl,40h  ;suma para mostrar numero
         int 21h
@@ -34,11 +34,11 @@ org 100h
                  db '5. Salir',13,10,13,10
                  db 'Seleccione una Opcion --> $',13,10
                  
-     textodivision db 13,10,"===============.Division.===============$",13,10
-     textoresta db 13,10,"===============.Resta.===============$",13,10
-     textosuma db 13,10,"===============.Suma.===============$",13,10           
-     textomulti db 13,10,"===============.Multiplicacion.===============$",13,10
-     textoesc db 13,10," - ESC para regresar$",13,10
+     textdiv db 13,10,"===============.Division.===============$",13,10
+     textrest db 13,10,"===============.Resta.===============$",13,10
+     textsum db 13,10,"===============.Suma.===============$",13,10           
+     textmult db 13,10,"===============.Multiplicacion.===============$",13,10
+     textesc db 13,10," - ESC para regresar$",13,10
     
      msj1    db 13,10,"numero 1: $",13,10
      msj2    db 13,10,"numero 2: $",13,10
@@ -104,7 +104,7 @@ org 100h
         division:
                 call limpiar
                 mov ah,09
-                lea dx, textodivision ;nombre del mensaje
+                lea dx, textdiv ;nombre del mensaje
                 int 21h ;interrupcion de video
                 mov ah, 09
                 lea dx, msj1
@@ -139,7 +139,7 @@ org 100h
                 int 21h
     
                 mov ah,09
-                lea dx,textoesc
+                lea dx,textesc
                 int 21h
     
                 mov ah,01;pausa y captura de datos
@@ -152,7 +152,7 @@ org 100h
           resta:
                 call limpiar
                 mov ah,09
-                lea dx,textoresta
+                lea dx,textrest
                 int 21h
            
                 ;numero 1
@@ -190,7 +190,7 @@ org 100h
                 int 21h
         
                 mov ah,09
-                lea dx,textoesc
+                lea dx,textesc
                 int 21h
        
                 mov ah,01
@@ -203,7 +203,7 @@ org 100h
             suma:
                 call limpiar
                 mov ah,09
-                lea dx,textosuma
+                lea dx,textsum
                 int 21h
 
                 Sumas proc 
@@ -230,7 +230,7 @@ org 100h
                 define_scan_num
       
                 mov ah,09
-                lea dx,textoesc
+                lea dx,textesc
                 int 21h
     
                 mov ah,01
@@ -243,7 +243,7 @@ org 100h
            multi:
                 call limpiar
                 mov ah,09
-                lea dx,textomulti  
+                lea dx,textmult  
                 int 21h
     
                 lea dx, msj1
@@ -285,7 +285,7 @@ org 100h
        
     
                 mov ah,09
-                lea dx,textoesc
+                lea dx,textesc
                 int 21h
        
                 mov ah,01
